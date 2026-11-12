@@ -1,5 +1,7 @@
 # nginx-rpms
 
+English | [简体中文](README_CN.md)
+
 Build upstream nginx RPMs for openEuler 24.03. This project follows the
 `version.env` + `pullsrc.sh` + `compile.sh` + per-distribution spec layout used
 by [openssh-rpms](https://github.com/boypt/openssh-rpms).
