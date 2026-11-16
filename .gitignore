@@ -1,0 +1,10 @@
+downloads/*.tar.gz
+oe2403/BUILD/
+oe2403/BUILDROOT/
+oe2403/RPMS/
+oe2403/SRPMS/
+oe2403/SOURCES/*.tar.gz
+output/
+*.log
+version-local.env
+.git-data/
