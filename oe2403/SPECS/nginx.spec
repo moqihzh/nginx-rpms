@@ -1,4 +1,4 @@
-%{!?nginxver: %global nginxver 1.31.8}
+%{!?nginxver: %global nginxver 1.31.9}
 %{!?nginxpkgrel: %global nginxpkgrel 1}
 
 Name:           nginx
@@ -99,5 +99,8 @@ getent passwd nginx >/dev/null || useradd -r -g nginx -d %{_datadir}/nginx -s /s
 %dir %attr(0750,nginx,nginx) /var/cache/nginx/scgi_temp
 
 %changelog
+* Thu Nov 19 2026 nginx-rpms contributors - 1.31.9-1
+- Update to nginx 1.31.9
+
 * Thu Nov 12 2026 nginx-rpms contributors - 1.31.8-1
 - Initial openEuler 24.03 package

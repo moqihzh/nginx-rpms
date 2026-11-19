@@ -70,7 +70,7 @@ Then run:
 ./pullsrc.sh
 ./compile.sh
 ls output/
-./tests/smoke.sh output/nginx-1.31.8-1.el9.x86_64.rpm
+./tests/smoke.sh output/nginx-1.31.9-1.el9.x86_64.rpm
 ```
 
 `./compile.sh` with no arguments detects the host. `./compile.sh el9` selects
@@ -102,13 +102,13 @@ produce a separate debugsource package.
 EL7:
 
 ```bash
-sudo yum install ./output/nginx-1.31.8-1.el7.x86_64.rpm
+sudo yum install ./output/nginx-1.31.9-1.el7.x86_64.rpm
 ```
 
 EL8, EL9, and openEuler:
 
 ```bash
-sudo dnf install ./output/nginx-1.31.8-1.el9.x86_64.rpm
+sudo dnf install ./output/nginx-1.31.9-1.el9.x86_64.rpm
 ```
 
 Use the RPM filename produced for your release tag and architecture. When the

@@ -67,7 +67,7 @@ sudo yum install gcc make rpm-build redhat-rpm-config openssl-devel pcre-devel z
 ./pullsrc.sh
 ./compile.sh
 ls output/
-./tests/smoke.sh output/nginx-1.31.8-1.el9.x86_64.rpm
+./tests/smoke.sh output/nginx-1.31.9-1.el9.x86_64.rpm
 ```
 
 不带参数的 `./compile.sh` 会识别主机。在 EL9 上可以执行 `./compile.sh el9`；
@@ -96,13 +96,13 @@ RPM 和源码 RPM。EL7 的 rpm 会生成 debuginfo，不会另外生成 debugso
 EL7：
 
 ```bash
-sudo yum install ./output/nginx-1.31.8-1.el7.x86_64.rpm
+sudo yum install ./output/nginx-1.31.9-1.el7.x86_64.rpm
 ```
 
 EL8、EL9 和 openEuler：
 
 ```bash
-sudo dnf install ./output/nginx-1.31.8-1.el9.x86_64.rpm
+sudo dnf install ./output/nginx-1.31.9-1.el9.x86_64.rpm
 ```
 
 请使用本次构建得到的发布号和架构。EL8、EL9 上如果已经装过发行版 nginx，
