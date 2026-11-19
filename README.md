@@ -111,11 +111,20 @@ EL8, EL9, and openEuler:
 sudo dnf install ./output/nginx-1.31.9-1.el9.x86_64.rpm
 ```
 
-Use the RPM filename produced for your release tag and architecture. When the
-distribution nginx is already installed on EL8 or EL9, disable the AppStream
-module and remove its packages first. Otherwise a later update can replace
-this build, and the split `nginx-filesystem` / `nginx-mod-*` packages can
-conflict on `/etc/nginx`:
+Use the RPM filename produced for your release tag and architecture. On
+openEuler, `nginx-mod-stream` and the other module packages require
+`nginx(abi) = 1.24.0` and block the new package. An already built package
+that has no Epoch can erase the conflicting packages:
+
+```bash
+sudo dnf install --allowerasing ./nginx-1.31.9-1.oe2403sp4.x86_64.rpm
+```
+
+A package rebuilt after this change has Epoch 1 and obsoletes those module
+packages, so a plain `dnf install` replaces them. When the distribution nginx
+is already installed on EL8 or EL9, disable the AppStream module and remove
+its packages first. Otherwise a later update can replace this build, and the
+split `nginx-filesystem` / `nginx-mod-*` packages can conflict on `/etc/nginx`:
 
 ```bash
 sudo dnf module disable nginx

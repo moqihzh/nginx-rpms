@@ -2,8 +2,19 @@
 %{!?nginxpkgrel: %global nginxpkgrel 1}
 
 Name:           nginx
+# Epoch 1 matches openEuler nginx, so 1.31 replaces 1.24.
+Epoch:          1
 Version:        %{nginxver}
 Release:        %{nginxpkgrel}%{?dist}
+# Stream is compiled in. Drop the distro modules pinned to nginx(abi) = 1.24.0.
+Obsoletes:      nginx-all-modules < 1:%{version}
+Obsoletes:      nginx-mod-stream < 1:%{version}
+Obsoletes:      nginx-mod-http-image-filter < 1:%{version}
+Obsoletes:      nginx-mod-http-perl < 1:%{version}
+Obsoletes:      nginx-mod-http-xslt-filter < 1:%{version}
+Obsoletes:      nginx-mod-mail < 1:%{version}
+Obsoletes:      nginx-mod-http-geoip < 1:%{version}
+Obsoletes:      nginx-mod-devel < 1:%{version}
 Summary:        High performance HTTP and reverse proxy server
 License:        BSD-2-Clause
 URL:            https://nginx.org/
@@ -101,6 +112,7 @@ getent passwd nginx >/dev/null || useradd -r -g nginx -d %{_datadir}/nginx -s /s
 %changelog
 * Thu Nov 19 2026 nginx-rpms contributors - 1.31.9-1
 - Update to nginx 1.31.9
+- Replace openEuler nginx-mod-* packages pinned to nginx(abi) = 1.24.0
 
 * Thu Nov 12 2026 nginx-rpms contributors - 1.31.8-1
 - Initial openEuler 24.03 package

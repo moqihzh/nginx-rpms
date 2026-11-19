@@ -3,8 +3,19 @@
 
 # openEuler 22.03 LTS: system OpenSSL 1.1.1 and PCRE2.
 Name:           nginx
+# Epoch 1 matches openEuler nginx, so 1.31 replaces the distro package.
+Epoch:          1
 Version:        %{nginxver}
 Release:        %{nginxpkgrel}%{?dist}
+# Stream is compiled in. Drop the distro modules pinned to the old nginx ABI.
+Obsoletes:      nginx-all-modules < 1:%{version}
+Obsoletes:      nginx-mod-stream < 1:%{version}
+Obsoletes:      nginx-mod-http-image-filter < 1:%{version}
+Obsoletes:      nginx-mod-http-perl < 1:%{version}
+Obsoletes:      nginx-mod-http-xslt-filter < 1:%{version}
+Obsoletes:      nginx-mod-mail < 1:%{version}
+Obsoletes:      nginx-mod-http-geoip < 1:%{version}
+Obsoletes:      nginx-mod-devel < 1:%{version}
 Summary:        High performance HTTP and reverse proxy server
 License:        BSD-2-Clause
 URL:            https://nginx.org/
@@ -102,6 +113,7 @@ getent passwd nginx >/dev/null || useradd -r -g nginx -d %{_datadir}/nginx -s /s
 %changelog
 * Thu Nov 19 2026 nginx-rpms contributors - 1.31.9-1
 - Update to nginx 1.31.9
+- Replace openEuler nginx-mod-* packages pinned to the distro nginx ABI
 
 * Tue Nov 17 2026 nginx-rpms contributors - 1.31.8-1
 - Package nginx for openEuler 22.03

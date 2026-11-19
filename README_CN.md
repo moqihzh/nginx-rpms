@@ -105,7 +105,16 @@ EL8、EL9 和 openEuler：
 sudo dnf install ./output/nginx-1.31.9-1.el9.x86_64.rpm
 ```
 
-请使用本次构建得到的发布号和架构。EL8、EL9 上如果已经装过发行版 nginx，
+请使用本次构建得到的发布号和架构。openEuler 上如果已经装过发行版 nginx，
+`nginx-mod-stream` 等模块包要求 `nginx(abi) = 1.24.0`，会挡住新包。
+已经打出来、还没有 Epoch 的包直接允许擦除冲突包：
+
+```bash
+sudo dnf install --allowerasing ./nginx-1.31.9-1.oe2403sp4.x86_64.rpm
+```
+
+重新构建后的包 Epoch 为 1，并 Obsolete 这些模块包，普通 `dnf install` 即可替换。
+EL8、EL9 上如果已经装过发行版 nginx，
 先关闭 AppStream 模块并卸掉原来的包，否则之后的系统更新可能把它换回去，
 拆分的 `nginx-filesystem`、`nginx-mod-*` 也可能和 `/etc/nginx` 冲突：
 
