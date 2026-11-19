@@ -132,11 +132,13 @@ sudo dnf remove nginx nginx-filesystem nginx-all-modules
 ```
 
 The EL packages use Epoch 1, the same epoch as the distribution and nginx.org
-packages, so version 1.31 sorts as an upgrade. Then check and start it:
+packages, so version 1.31 sorts as an upgrade. Install and upgrade run
+`systemctl enable nginx`. A package already installed from a build that does
+not do this needs it once:
 
 ```bash
-sudo nginx -t
-sudo systemctl enable --now nginx
+sudo systemctl enable nginx
+sudo nginx -t && sudo systemctl start nginx
 ```
 
 The package creates the `nginx` service account, installs

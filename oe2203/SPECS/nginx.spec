@@ -84,6 +84,8 @@ getent passwd nginx >/dev/null || useradd -r -g nginx -d %{_datadir}/nginx -s /s
 
 %post
 %systemd_post nginx.service
+# preset leaves nginx disabled. Enable it on install and upgrade.
+systemctl enable nginx.service >/dev/null 2>&1 || :
 
 %preun
 %systemd_preun nginx.service
@@ -114,6 +116,7 @@ getent passwd nginx >/dev/null || useradd -r -g nginx -d %{_datadir}/nginx -s /s
 * Thu Nov 19 2026 nginx-rpms contributors - 1.31.9-1
 - Update to nginx 1.31.9
 - Replace openEuler nginx-mod-* packages pinned to the distro nginx ABI
+- Enable nginx.service on install and upgrade
 
 * Tue Nov 17 2026 nginx-rpms contributors - 1.31.8-1
 - Package nginx for openEuler 22.03

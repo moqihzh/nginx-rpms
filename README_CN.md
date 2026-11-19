@@ -124,11 +124,12 @@ sudo dnf remove nginx nginx-filesystem nginx-all-modules
 ```
 
 EL 软件包的 Epoch 为 1，与发行版和 nginx.org 的软件包相同，因此 1.31 会被当成
-升级。确认配置后启动服务：
+升级。安装和升级都会执行 `systemctl enable nginx`，打开开机自启。
+已经装上、脚本里还没有这条命令的包，补一次：
 
 ```bash
-sudo nginx -t
-sudo systemctl enable --now nginx
+sudo systemctl enable nginx
+sudo nginx -t && sudo systemctl start nginx
 ```
 
 软件包会创建 `nginx` 服务账号，以 `%config(noreplace)` 方式安装
